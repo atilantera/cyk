@@ -1,0 +1,56 @@
+Produktion etsiminen kieliopista nopeutuu valtavasti, jos
+tehdään hakupuu: kun etsitään produktiota AB, niin
+haaraudutaan ensin A:n perusteella ja sitten B:n
+perusteella. Lehdessä on luettelo niistä välikkeistä,
+jotka tuottavat tämän välikeparin tai päätemerkin.
+
+S -> AB | BA
+A -> BA | a
+B -> AB | b
+
+Puu:
+
+juuri
+|
+A---------B----------a----b
+|         |          |    |
+A---B     A------B   {A}  {B}
+|   |     |      |
+{}  {B,S} {A,S}  {}
+
+{} = tyhjä joukko
+
+----------------------------------------------------------
+
+Kaksiulotteinen cyk-taulukko yksiulotteisena:
+
+Merkkijonon pituus = n
+
+n | soluja
+--+----------------------
+1 | 1
+2 | 3 (1+2)
+3 | 6 (1+2+3)
+4 | 10 (1+2+3+4)
+
+soluja = n(n+1)/2
+
+Taulukon indeksit:
+
+        i->
+    0  1  2  3  4  5  6
+    7  8  9 11 12 13
+k  14 15 16 17 18
+|  19 20 21 22
+v  23 24 25
+   26 27
+   28
+
+i = 1 .. n
+k = 1 .. n
+
+offset = k*(n-k) + k*(k+1)/2;
+       = k*(2*n -2*k + k + 1)/2;
+       = k*(2*n -k + 1)/2;
+       = (k*((n<<1) -k + 1)) >> 2;
+
